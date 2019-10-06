@@ -11,7 +11,7 @@ class Issue(SystemObject):
         ('other', 'Other')
     )
     title = models.CharField(max_length=255, db_index=True, unique=True)
-    category = models.CharField(max_length=255, choices=ISSUE_CHOICES)
+    category = models.CharField(max_length=255, choices=ISSUE_CHOICES, db_index=True)
 
     def to_representation(self):
         return {
