@@ -7,6 +7,7 @@ class SystemObjectManager(models.Manager):
     @classmethod
     def get_object_by_id(cls, id):
         try:
+            """ CHECKME: cursor.execute("SELECT * FROM systemobject WHERE id = %s;", (id,))"""
             entity = SystemObject.objects.get(pk=id)
         except SystemObject.DoesNotExist:
             entity = None

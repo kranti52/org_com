@@ -7,6 +7,7 @@ class ProductManager(models.Manager):
     @classmethod
     def get_object_by_id(cls, id):
         try:
+            """ CHECKME: cursor.execute("SELECT * FROM product WHERE id = %s;", (id,))"""
             entity = Product.objects.get(pk=id)
         except Product.DoesNotExist:
             entity = None
@@ -15,6 +16,7 @@ class ProductManager(models.Manager):
     @classmethod
     def get_object_by_title(cls, title):
         try:
+            """ CHECKME: cursor.execute("SELECT * FROM product WHERE title = %s;", (title,))"""
             entity = Product.objects.get(title=title)
         except Product.DoesNotExist:
             entity = None
@@ -22,6 +24,8 @@ class ProductManager(models.Manager):
 
     @classmethod
     def filter_object_data(cls, request_data):
+        """ CHECKME: cursor.execute("SELECT * FROM product WHERE
+                id = %s and title=%s;", (id, title,))"""
         products = []
         object_id = request_data.get('id')
         title = request_data.get('title')
