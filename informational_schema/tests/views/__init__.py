@@ -1,0 +1,2 @@
+from .InformationalSystemTestCase import InformationalSystemTestCase
+from .MapTestCase import MapTestCase
