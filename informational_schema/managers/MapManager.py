@@ -7,6 +7,8 @@ from ..models import Map
 class MapManager(models.Manager):
     @classmethod
     def get_object_mapping_by_id(cls, id):
+        """ CHECKME: cursor.execute("SELECT * FROM map WHERE first_object_id = %s or
+        second_object_id = %s ;", (first_object_id, second_object_id, ))"""
         entities = Map.objects.filter(Q(first_object_id=id) | Q(second_object_id=id))
         response = []
         for entity in entities:
@@ -31,6 +33,10 @@ class MapManager(models.Manager):
 
     @classmethod
     def check_if_mapping_exists_by_id(cls, first_id, second_id):
+        """ CHECKME: cursor.execute("SELECT * FROM map WHERE (first_object_id = %s and
+            second_object_id = %s) or (first_object_id = %s and
+            second_object_id = %s) ;", (first_object_id, second_object_id,
+            second_object_id, first_object_id))"""
         return Map.objects.filter(
             Q(first_object_id=first_id, second_object_id=second_id) |
             Q(first_object_id=second_id, second_object_id=first_id)).exists()

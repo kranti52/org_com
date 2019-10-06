@@ -5,6 +5,7 @@ Setup:
     python -m venv org_venv
 2. source org_venv/bin/activate
 3. pip install -r requirements.txt
+4. python manage.py migrate
 
 
 Development server:

@@ -7,6 +7,7 @@ class MetricManager(models.Manager):
     @classmethod
     def get_object_by_id(cls, id):
         try:
+            """ CHECKME: cursor.execute("SELECT * FROM metric WHERE id = %s;", (id,))"""
             entity = Metric.objects.get(pk=id)
         except Metric.DoesNotExist:
             entity = None
@@ -15,6 +16,7 @@ class MetricManager(models.Manager):
     @classmethod
     def get_object_by_title(cls, title):
         try:
+            """ CHECKME: cursor.execute("SELECT * FROM metric WHERE title = %s;", (title,))"""
             entity = Metric.objects.get(title=title)
         except Metric.DoesNotExist:
             entity = None
@@ -22,6 +24,8 @@ class MetricManager(models.Manager):
 
     @classmethod
     def filter_object_data(cls, request_data):
+        """ CHECKME: cursor.execute("SELECT * FROM metric WHERE
+        id = %s and title=%s;", (id, title,))"""
         metrics = []
         object_id = request_data.get('id')
         title = request_data.get('title')
