@@ -13,16 +13,19 @@ class InformationalSystemTestCase(TestCase):
         self.product_title = fake.first_name()
         self.product_description = fake.text(max_nb_chars=200)
         self.product = Product.objects.create(**{'title': self.product_title,
+                                                 'object_type': 'product',
                                                  'description': self.product_description})
 
         self.metric_title = fake.first_name()
         self.metric_description = fake.text(max_nb_chars=200)
         self.metric = Metric.objects.create(**{'title': self.product_title,
+                                               'object_type': 'metric',
                                                'description': self.product_description})
 
         self.issue_title = fake.first_name()
         self.issue_category = 'other'
         self.issue = Issue.objects.create(**{'title': self.product_title,
+                                             'object_type': 'issue',
                                              'category': self.issue_category})
         # Product URLs.
         self.create_product = "/entity/{}".format('product')
