@@ -19,11 +19,11 @@ class MapManager(models.Manager):
                 elif 'metric' == entity.first_object.object_type:
                     data = entity.first_object.metric.to_representation()
             elif id != entity.second_object_id:
-                if 'product' == entity.first_object.object_type:
+                if 'product' == entity.second_object.object_type:
                     data = entity.second_object.product.to_representation()
-                elif 'issue' == entity.first_object.object_type:
+                elif 'issue' == entity.second_object.object_type:
                     data = entity.second_object.issue.to_representation()
-                elif 'metric' == entity.first_object.object_type:
+                elif 'metric' == entity.second_object.object_type:
                     data = entity.second_object.metric.to_representation()
             if data:
                 response.append(data)
