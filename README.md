@@ -9,3 +9,9 @@ Setup:
 
 Development server:
 python manage.py runserver
+
+Unittest execution:
+python manage.py test
+    or
+bin/run_functional_tests
+
