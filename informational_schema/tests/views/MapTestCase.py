@@ -112,3 +112,23 @@ class MapTestCase(TestCase):
         response = self.client.get(self.map_url, params, format='json', **headers)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.json()), 2)
+
+    def test_retrieve_map_with_wrong_id(self):
+        headers = {}
+        data = {
+            'first_object_id': self.issue.id,
+            'second_object_id': self.metric.id
+        }
+        self.client.post(self.map_url, data, format='json', **headers)
+        data = {
+            'first_object_id': self.issue.id,
+            'second_object_id': self.product.id
+        }
+        self.client.post(self.map_url, data, format='json', **headers)
+
+        params = {
+            'id': 55555
+        }
+
+        response = self.client.get(self.map_url, params, format='json', **headers)
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
